@@ -8,7 +8,9 @@ const settings: any = parse(fs.readFileSync('settings.json', 'utf-8'));
 
 const gradeUp = new ChatInput(
 	{
-		name: 'gradeup', description: 'Grade up a student'
+		name: 'gradeup',
+		description: 'Grade up a student',
+		defaultMemberPermissions: 'Administrator',
 	},
 	async (interaction) => {
 		// サーバー外で使用された場合

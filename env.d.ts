@@ -5,6 +5,7 @@ declare module 'node:process' {
 				readonly DISCORD_TOKEN: string;
 				readonly CLIENT_ID: string;
 				readonly GUILD_ID: string;
+				readonly Library_DB: string;
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'node:path';
+import Database from 'better-sqlite3';
 dotenv.config();
 
 import { Client, Events, GatewayIntentBits } from 'discord.js';
@@ -21,6 +22,11 @@ const client = new Client({
 		GatewayIntentBits.DirectMessageReactions
 	],
 });
+
+// DB Check
+const BohPJLibrary = new Database(process.env.Library_DB ?? '');
+BohPJLibrary.prepare(`CREATE TABLE IF NOT EXISTS BohPJLibrary (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title string NOT NULL, donarId string NOT NULL)`).run();
+BohPJLibrary.close();
 
 const interactions = new DiscordInteractions(client);
 interactions.loadRegistries(path.resolve(__dirname, './commands'));
