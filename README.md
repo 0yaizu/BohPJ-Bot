@@ -22,3 +22,15 @@ The source code for the bot used in the Boh PJ Discord server.
 
 基本的には[gitmoji](https://gitmoji.dev/)を踏襲しています  
 This is primarily based on [gitmoji](https://gitmoji.dev/).
+
+## ブランチ戦略
+このリポジトリではGithub Flowを用いてブランチを管理しています。
+We use GitHub Flow to manage branches in this repository.
+
+|Branch Name|Description|
+|:-:|:-:|
+|`main`|本番環境用のブランチ (Production branch)|
+|`hotfix/*`|緊急修正用のブランチ (Branch for urgent fixes)|
+
+- `main`ブランチは常にデプロイ可能な状態に保つ。
+- `main`ブランチへ直接コミットするのではなく、新しい機能や修正を`feature`ブランチで行い、Pull Requestを作成して`main`へマージする。
