@@ -7,7 +7,7 @@ The source code for the bot used in the Boh PJ Discord server.
 
 ## コミットアイコン / Commit Icons
 |Emoji|Code|Type|
-|:-:|:-:|:-:|
+|:-:|:-|:-|
 |:sparkles:|`:sparkles:`|新機能 (New Feature)|
 |:bookmark:|`:bookmark:`|リリースアップデート (Release)|
 |:fire:|`:fire:`|削除 (Remove)|
@@ -28,9 +28,9 @@ This is primarily based on [gitmoji](https://gitmoji.dev/).
 We use GitHub Flow to manage branches in this repository.
 
 |Branch Name|Description|
-|:-:|:-:|
+|:-:|:-|
 |`main`|本番環境用のブランチ (Production branch)|
-|`hotfix/*`|緊急修正用のブランチ (Branch for urgent fixes)|
+|`feature/*`|新しい機能や修正を開発するためのブランチ (Branch for developing new features or fixes)|
 
 - `main`ブランチは常にデプロイ可能な状態に保つ。
 - `main`ブランチへ直接コミットするのではなく、新しい機能や修正を`feature`ブランチで行い、Pull Requestを作成して`main`へマージする。
