@@ -13,7 +13,11 @@ const gradeUp = new ChatInput(
 	async (interaction) => {
 		// サーバー外で使用された場合
 		if (!interaction.inCachedGuild()) {
-			await interaction.reply('このコマンドはサーバーでのみ使用できます');
+			await interaction.reply({ content: 'このコマンドはサーバー内でのみ使用できます', flags: MessageFlags.Ephemeral });
+			return;
+		}
+		if (!interaction.memberPermissions.has('Administrator')) {
+			await interaction.reply({ content: 'このコマンドは管理者のみ使用できます', flags: MessageFlags.Ephemeral });
 			return;
 		}
 		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
