@@ -1,9 +1,9 @@
 # PingTube
  
 ## 概要 / Overview
-Youtubeの動画投稿やライブ配信があった場合、Discordにて通知を飛ばすためのDiscord Botです。
+Boh PJ Discordサーバーで使用するBotのソースコード。
 
-This is a Discord Bot designed to send notifications on Discord whenever a new video is uploaded or a live stream starts on YouTube.
+The source code for the bot used in the Boh PJ Discord server.
 
 ## コミットアイコン / Commit Icons
 |Emoji|Code|Type|
