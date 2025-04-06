@@ -13,7 +13,11 @@ const gradeUp = new ChatInput(
 	async (interaction) => {
 		// サーバー外で使用された場合
 		if (!interaction.inCachedGuild()) {
-			await interaction.reply('このコマンドはサーバーでのみ使用できます');
+			await interaction.reply({ content: 'このコマンドはサーバー内でのみ使用できます', flags: MessageFlags.Ephemeral });
+			return;
+		}
+		if (!interaction.memberPermissions.has('Administrator')) {
+			await interaction.reply({ content: 'このコマンドは管理者のみ使用できます', flags: MessageFlags.Ephemeral });
 			return;
 		}
 		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
@@ -54,8 +58,8 @@ const gradeUp = new ChatInput(
 			})
 		}
 		await interaction.editReply({ content: 'Grade up Done.' });
-		if ([...new Set(errorList)].length > 0) {
-			await interaction.followUp({ content: `以下のメンバーの学年の変更に失敗しました。手動で変更してください。\n<@${[...new Set(errorList)].join('>\n<@')}>`, ephemeral: true });
+		if (errorList.length > 0) {
+			await interaction.followUp({ content: `以下のメンバーの学年の変更に失敗しました。手動で変更してください。\n<@${errorList.join('\n')}>`, ephemeral: true });
 		}
 	})
 
