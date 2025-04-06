@@ -58,8 +58,8 @@ const gradeUp = new ChatInput(
 			})
 		}
 		await interaction.editReply({ content: 'Grade up Done.' });
-		if ([...new Set(errorList)].length > 0) {
-			await interaction.followUp({ content: `以下のメンバーの学年の変更に失敗しました。手動で変更してください。\n<@${[...new Set(errorList)].join('>\n<@')}>`, ephemeral: true });
+		if (errorList.length > 0) {
+			await interaction.followUp({ content: `以下のメンバーの学年の変更に失敗しました。手動で変更してください。\n<@${errorList.join('\n')}>`, ephemeral: true });
 		}
 	})
 
