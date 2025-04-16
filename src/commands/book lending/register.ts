@@ -5,6 +5,13 @@ import Database from "better-sqlite3"
 import dotenv from 'dotenv';
 dotenv.config();
 
+const list = [{name: "test", value: "test"}, {name: "test2", value: "test2"}]
+
+const libraryDb = new Database(process.env.Library_DB ?? '');
+
+const genreOption = libraryDb.prepare('SELECT * FROM genre_list').get();
+console.log(genreOption);
+
 const registerBook = new ChatInput(
 	{
 		name: 'register_book',description: '本を登録します。', options: [
@@ -19,6 +26,13 @@ const registerBook = new ChatInput(
 				description: '寄贈者',
 				required: true,
 				type: ApplicationCommandOptionType.User
+			},
+			{
+				name: 'genre',
+				description: 'ジャンル',
+				required: false,
+				type: ApplicationCommandOptionType.String,
+				choices: list
 			}
 		]
 	},
@@ -35,12 +49,13 @@ const registerBook = new ChatInput(
 			.addFields(
 				{ name: '本の名前', value: interaction.options.getString('book_name') ?? "" },
 				{ name: '寄贈者', value: `<@${interaction.options.getUser('donar')?.id}>` },
+				{ name: 'ジャンル(カンマ区切り)', value: interaction.options.getString('genre') ?? ""},
 			)
 			.setFooter({ text: `${interaction.user.tag} によって登録`, iconURL: interaction.user.displayAvatarURL() })
 			.setTimestamp()
 		await interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
 		const BohPJLibrary = new Database(process.env.Library_DB ?? '');
-		BohPJLibrary.prepare(`INSERT INTO BohPJLibrary (title, donarId) VALUES (?, ?)`).run(interaction.options.getString('book_name') ?? "", interaction.options.getUser('donar')?.id ?? "");
+		BohPJLibrary.prepare(`INSERT INTO book_list (title, donarId) VALUES (?, ?)`).run(interaction.options.getString('book_name') ?? "", interaction.options.getUser('donar')?.id ?? "");
 		BohPJLibrary.close();
 	}
 )

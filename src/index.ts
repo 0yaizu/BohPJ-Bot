@@ -25,7 +25,8 @@ const client = new Client({
 
 // DB Check
 const BohPJLibrary = new Database(process.env.Library_DB ?? '');
-BohPJLibrary.prepare(`CREATE TABLE IF NOT EXISTS BohPJLibrary (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title string NOT NULL, donarId string NOT NULL)`).run();
+BohPJLibrary.prepare(`CREATE TABLE IF NOT EXISTS book_list (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title string NOT NULL, donarId string NOT NULL)`).run();
+BohPJLibrary.prepare(`CREATE TABLE IF NOT EXISTS genre_list (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, genre string NOT NULL UNIQUE)`).run();
 BohPJLibrary.close();
 
 const interactions = new DiscordInteractions(client);
